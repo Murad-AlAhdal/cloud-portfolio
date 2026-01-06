@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Portfolio Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="app-container">
+        <section id="form-section">
+            <header class="app-header">
+                <div class="logo">☁️ CloudPortfolio</div>
+                <h1>Create Your Professional Portfolio in Minutes</h1>
+                <p>Enter your details, choose your specialty, and get a professional website ready.</p>
+            </header>
+
+            <form id="portfolio-form">
+                <div class="form-step active" data-step="1">
+                    <h2><i class="fas fa-user-circle"></i> Basic Information</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" name="fullName" placeholder="e.g. John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Specialization (Determines Design)</label>
+                            <select name="specialization" id="specialization-select" required>
+                                <option value="" disabled selected>Choose specialization...</option>
+                                <option value="engineering">Engineering</option>
+                                <option value="medical">Medical / Pharmacy</option>
+                                <option value="creative">Arts / Design</option>
+                                <option value="business">Business Administration</option>
+                                <option value="cs">Computer Science</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Current Role / Study</label>
+                            <input type="text" name="currentRole"
+                                placeholder="e.g. Software Engineer / Medical Student">
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Personal Bio</label>
+                            <textarea name="bio" rows="4"
+                                placeholder="Briefly describe yourself and your passion..."></textarea>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Profile Picture</label>
+                            <div class="file-upload-wrapper">
+                                <input type="file" id="profile-pic-input" accept="image/*">
+                                <div class="file-upload-preview">
+                                    <img id="profile-preview" src="" alt="preview" style="display:none;">
+                                    <span>Click to upload image</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="2">
+                    <h2><i class="fas fa-address-card"></i> Contact Information</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" name="email" placeholder="example@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" name="phone" placeholder="+1 xxx xxxx">
+                        </div>
+                        <div class="form-group">
+                            <label>LinkedIn URL</label>
+                            <input type="url" name="linkedin" placeholder="https://linkedin.com/in/...">
+                        </div>
+                        <div class="form-group">
+                            <label>GitHub / Portfolio URL</label>
+                            <input type="url" name="github" placeholder="https://github.com/...">
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Location / City</label>
+                            <input type="text" name="location" placeholder="New York, USA">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="3">
+                    <h2><i class="fas fa-graduation-cap"></i> Education & Experience</h2>
+                    <div class="dynamic-section" id="education-section">
+                        <h3>Education</h3>
+                        <div id="education-list"></div>
+                        <button type="button" class="btn-secondary" onclick="addEducationField()">+ Add
+                            Education</button>
+                    </div>
+                    <div class="dynamic-section" id="experience-section">
+                        <h3>Professional Experience</h3>
+                        <div id="experience-list"></div>
+                        <button type="button" class="btn-secondary" onclick="addExperienceField()">+ Add
+                            Experience</button>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="4">
+                    <h2><i class="fas fa-star"></i> Skills & Activities</h2>
+                    <div class="form-group full-width">
+                        <label>Skills (comma separated)</label>
+                        <input type="text" name="skills" placeholder="e.g. Python, Leadership, Project Management">
+                    </div>
+                    <div class="dynamic-section" id="activities-section">
+                        <h3>Activities & Leadership</h3>
+                        <div id="activities-list"></div>
+                        <button type="button" class="btn-secondary" onclick="addActivityField()">+ Add Activity</button>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" id="prev-btn" class="btn-outline" style="display:none;">Previous</button>
+                    <button type="button" id="next-btn" class="btn-primary">Next</button>
+                    <button type="button" id="submit-btn" class="btn-success" style="display:none;">Generate Website
+                        ✨</button>
+                </div>
+            </form>
+        </section>
+
+        <section id="portfolio-preview" style="display:none;">
+            <div id="generated-content"></div>
+            <div class="floating-controls">
+                <button onclick="editPortfolio()" class="btn-floating"><i class="fas fa-edit"></i> Edit</button>
+                <button onclick="printPortfolio()" class="btn-floating"><i class="fas fa-print"></i> Save PDF</button>
+            </div>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
